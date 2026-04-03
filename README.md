@@ -157,6 +157,7 @@ Every request is intercepted by a validation layer. If an incorrect data type is
 
 #### 3\. Access Control (RBAC) Testing
    <img width="1920" height="1079" alt="image" src="https://github.com/user-attachments/assets/ccd96898-c5f2-499b-b61a-563b1b35252a" />
+   <br /><br />
    <img width="1917" height="1075" alt="image" src="https://github.com/user-attachments/assets/4ce26884-7b48-44d6-b00f-e042638daca9" />
 
 
