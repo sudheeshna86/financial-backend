@@ -1,12 +1,12 @@
 
 ```markdown
-Finance Data Processing & Access Control Backend
+## Finance Data Processing & Access Control Backend
 
 A secure, scalable backend system built with **Node.js**, **Express**, and **PostgreSQL** to manage financial records. This project implements strict **Role-Based Access Control (RBAC)**, data validation using **Zod**, and automated database synchronization via **Sequelize ORM**.
 
 ---
 
-Key Features
+## Key Features
 
 * **User Management:** Register and login with secure password hashing (BcryptJS).
 * **Role-Based Access Control (RBAC):**
