@@ -20,7 +20,7 @@ Key Features
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 finance-backend/
