@@ -1,3 +1,4 @@
+import { z } from 'zod';
 export const errorHandler = (err, req, res, next) => {
   console.error(err.stack);
 

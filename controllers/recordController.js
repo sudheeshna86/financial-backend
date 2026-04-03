@@ -20,7 +20,13 @@ export const createRecord = async (req, res, next) => {
 // Get all records with filtering
 export const getAllRecords = async (req, res, next) => {
   try {
-    const { type, category, startDate, endDate } = req.query;
+    const { type, category, startDate, endDate, page = 1, limit = 10 } = req.query;
+    
+    // 1. Calculate Pagination values
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const offset = (pageNum - 1) * limitNum;
+
     const filter = {};
 
     // Logic: Viewers/Analysts see their own. Admins see everything.
@@ -35,17 +41,27 @@ export const getAllRecords = async (req, res, next) => {
       filter.date = { [Op.between]: [startDate, endDate] };
     }
 
-    const records = await Record.findAll({ 
+    // 2. Use findAndCountAll to get both the data and total count
+    const { count, rows } = await Record.findAndCountAll({
       where: filter,
-      order: [['date', 'DESC']] 
+      limit: limitNum,
+      offset: offset,
+      order: [['date', 'DESC']],
     });
 
-    res.status(200).json({ status: 'success', results: records.length, data: records });
+    // 3. Send structured response
+    res.status(200).json({
+      status: 'success',
+      results: rows.length,
+      totalRecords: count,
+      totalPages: Math.ceil(count / limitNum),
+      currentPage: pageNum,
+      data: rows,
+    });
   } catch (error) {
     next(error);
   }
 };
-
 // Update record
 export const updateRecord = async (req, res, next) => {
   try {
